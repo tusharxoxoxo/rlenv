@@ -199,3 +199,30 @@ add Linting	ESLint + Prettier
 ```
 
 </details>
+
+<details>
+<summary>Internal LLM Prompt Structure</summary>
+
+The `analyze` endpoint constructs the final prompt sent to Gemini by appending the formatted issues to the user's natural language prompt.
+
+**Structure:**
+
+```text
+<User Prompt>
+
+Here are the GitHub issues to analyze:
+
+### Issue 1
+**Title:** <title>
+**URL:** <url>
+**Created:** <date>
+**Body:** <body>
+
+---
+
+### Issue 2
+...
+```
+
+For large datasets, issues are split into chunks (max ~800k chars), analyzed individually with a context-aware prompt, and then synthesized into a final answer.
+</details>
