@@ -32,7 +32,9 @@ async function handleFetch(req: Request): Promise<Response> {
         const body = (await req.json()) as FetchRequest;
 
         if (!body.repo || typeof body.repo !== "string") {
-            return errorResponse("Missing or invalid 'repo' field. Expected format: 'owner/repository-name'");
+            return errorResponse(
+                "Missing or invalid 'repo' field. Expected format: 'owner/repository-name'"
+            );
         }
 
         // Validate repo format
@@ -117,8 +119,8 @@ const server = Bun.serve({
                 status: "ok",
                 endpoints: [
                     "POST /scan - Fetch and cache GitHub issues",
-                    "POST /analyze - Analyze cached issues with LLM"
-                ]
+                    "POST /analyze - Analyze cached issues with LLM",
+                ],
             });
         }
 

@@ -160,3 +160,7 @@ https://github.com/oven-sh/bun
 ```json
 change the name to scan instead of fetch endpoint
 ```
+-> 3rd prompt chain
+```json
+add Linting	ESLint + Prettier	
+```

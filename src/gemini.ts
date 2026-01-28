@@ -1,6 +1,7 @@
 import type { Issue } from "./db";
 
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+const GEMINI_API_URL =
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 const MAX_CHARS_PER_CHUNK = 800000; // ~800K chars to stay well under token limits
 
 interface GeminiResponse {
@@ -18,15 +19,17 @@ interface GeminiResponse {
 }
 
 function formatIssuesForPrompt(issues: Issue[]): string {
-    return issues.map((issue, index) => {
-        const body = issue.body ? issue.body.substring(0, 2000) : "(no body)";
-        return `### Issue ${index + 1}
+    return issues
+        .map((issue, index) => {
+            const body = issue.body ? issue.body.substring(0, 2000) : "(no body)";
+            return `### Issue ${index + 1}
 **Title:** ${issue.title}
 **URL:** ${issue.html_url}
 **Created:** ${issue.created_at}
 **Body:** ${body}
 `;
-    }).join("\n---\n");
+        })
+        .join("\n---\n");
 }
 
 function chunkIssues(issues: Issue[]): Issue[][] {
@@ -89,7 +92,7 @@ ${formatIssuesForPrompt(chunks[i])}`;
 
         // Rate limiting: wait 12 seconds between requests (5 req/min limit)
         if (i < chunks.length - 1) {
-            await new Promise(resolve => setTimeout(resolve, 12000));
+            await new Promise((resolve) => setTimeout(resolve, 12000));
         }
     }
 
@@ -102,7 +105,7 @@ ${chunkAnalyses.map((a, i) => `## Chunk ${i + 1} Analysis\n${a}`).join("\n\n")}
 Now synthesize these analyses into a single coherent response for the original prompt:
 "${prompt}"`;
 
-    await new Promise(resolve => setTimeout(resolve, 12000));
+    await new Promise((resolve) => setTimeout(resolve, 12000));
     return await callGemini(apiKey, synthesisPrompt, "");
 }
 

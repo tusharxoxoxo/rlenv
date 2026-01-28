@@ -13,7 +13,7 @@ export async function fetchAllOpenIssues(repo: string): Promise<GitHubIssue[]> {
 
         const response = await fetch(url, {
             headers: {
-                "Accept": "application/vnd.github.v3+json",
+                Accept: "application/vnd.github.v3+json",
                 "User-Agent": "GitHub-Issue-Analyzer",
             },
         });
@@ -27,13 +27,15 @@ export async function fetchAllOpenIssues(repo: string): Promise<GitHubIssue[]> {
             }
             // GitHub returns 422 when pagination limit is exceeded (max ~1000 results)
             if (response.status === 422) {
-                console.log(`Reached GitHub pagination limit at page ${page}, returning ${allIssues.length} issues`);
+                console.log(
+                    `Reached GitHub pagination limit at page ${page}, returning ${allIssues.length} issues`
+                );
                 break;
             }
             throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
         }
 
-        const issues = await response.json() as Array<{
+        const issues = (await response.json()) as Array<{
             id: number;
             title: string;
             body: string | null;
@@ -43,7 +45,7 @@ export async function fetchAllOpenIssues(repo: string): Promise<GitHubIssue[]> {
         }>;
 
         // Filter out pull requests (GitHub API returns PRs in issues endpoint)
-        const realIssues = issues.filter(issue => !issue.pull_request);
+        const realIssues = issues.filter((issue) => !issue.pull_request);
 
         for (const issue of realIssues) {
             allIssues.push({

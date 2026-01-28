@@ -64,7 +64,15 @@ export function cacheIssues(repo: string, issues: GitHubIssue[]): number {
 
     let count = 0;
     for (const issue of issues) {
-        insert.run(repo, issue.id, issue.title, issue.body, issue.html_url, issue.created_at, cachedAt);
+        insert.run(
+            repo,
+            issue.id,
+            issue.title,
+            issue.body,
+            issue.html_url,
+            issue.created_at,
+            cachedAt
+        );
         count++;
     }
 
@@ -73,20 +81,26 @@ export function cacheIssues(repo: string, issues: GitHubIssue[]): number {
 
 export function getIssuesByRepo(repo: string): Issue[] {
     const db = getDb();
-    const query = db.query<Issue, [string]>("SELECT * FROM issues WHERE repo = ? ORDER BY created_at DESC");
+    const query = db.query<Issue, [string]>(
+        "SELECT * FROM issues WHERE repo = ? ORDER BY created_at DESC"
+    );
     return query.all(repo);
 }
 
 export function hasRepoBeenScanned(repo: string): boolean {
     const db = getDb();
-    const query = db.query<{ count: number }, [string]>("SELECT COUNT(*) as count FROM issues WHERE repo = ?");
+    const query = db.query<{ count: number }, [string]>(
+        "SELECT COUNT(*) as count FROM issues WHERE repo = ?"
+    );
     const result = query.get(repo);
     return result !== null && result.count > 0;
 }
 
 export function getRepoIssueCount(repo: string): number {
     const db = getDb();
-    const query = db.query<{ count: number }, [string]>("SELECT COUNT(*) as count FROM issues WHERE repo = ?");
+    const query = db.query<{ count: number }, [string]>(
+        "SELECT COUNT(*) as count FROM issues WHERE repo = ?"
+    );
     const result = query.get(repo);
     return result?.count ?? 0;
 }
