@@ -5,6 +5,9 @@
 <details>
 <summary>1st prompt chain</summary>
 
+<details>
+<summary>1st prompt</summary>
+
 ```text
 create a new .evn example file and add .env to git ignore 
 
@@ -17,7 +20,7 @@ GEMINI_API_KEY=your_api_key_here
 <summary>2nd prompt chain</summary>
 
 <details>
-<summary>Initial requirements</summary>
+<summary>1st prompt</summary>
 
 ```text
 GitHub Issue Analyzer with Local Caching + LLM Processing
@@ -154,7 +157,7 @@ query.get();
 </details>
 
 <details>
-<summary>Reference repo</summary>
+<summary>2nd prompt</summary>
 
 ```text
 https://github.com/oven-sh/bun
@@ -163,7 +166,7 @@ https://github.com/oven-sh/bun
 </details>
 
 <details>
-<summary>Endpoint rename</summary>
+<summary>3rd prompt</summary>
 
 ```text
 change the name to scan instead of fetch endpoint
@@ -175,6 +178,9 @@ change the name to scan instead of fetch endpoint
 
 <details>
 <summary>3rd prompt chain</summary>
+
+<details>
+<summary>1st prompt</summary>
 
 ```text
 add Linting	ESLint + Prettier	
