@@ -1,1 +1,4 @@
 .env
+.cursor
+node_modules
+bun.lock
