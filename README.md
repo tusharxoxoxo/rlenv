@@ -1,14 +1,21 @@
 # rlenv
 
 ## Prompts used
--> 1st prompt chain
+
+<details>
+<summary>1st prompt chain</summary>
+
 ```text
 create a new .evn example file and add .env to git ignore 
 
 GEMINI_API_KEY=your_api_key_here
 ```
 
--> 2nd prompt chain
+</details>
+
+<details>
+<summary>2nd prompt chain</summary>
+
 ```text
 GitHub Issue Analyzer with Local Caching + LLM Processing
 Overview
@@ -22,9 +29,7 @@ Fetch all open issues from a given GitHub repository and cache them locally.
 
 Request format
 {
-
   "repo": "owner/repository-name"
-
 }
 
 Expected behavior
@@ -37,20 +42,14 @@ html_url
 created_at
 Cache these issues locally using one storage approach sqlite
 
-esponse
+Response
 Return a summary:
 
 {
-
   "repo": "owner/repository-name",
-
   "issues_fetched": 42,
-
   "cached_successfully": true
-
 }
-
-
 
 2. Endpoint: POST /analyze
 Purpose
@@ -58,19 +57,15 @@ Take a repo name and a natural-language prompt, retrieve cached issues for that 
 
 Request format
 {
-
   "repo": "owner/repository-name",
-
   "prompt": "Find themes across recent issues and recommend what the maintainers should fix first"
-
 }
-
 
 Expected behavior
 Look up cached issues for the given repo
 Combine the prompt + cached issues into an LLM request
 Let the LLM generate the analysis (no keyword classification; fully natural-language interpretation)
-Return the LLM’s output in a readable response
+Return the LLM's output in a readable response
 
 use gemini 2.5 via the api key
 refer env.example 
@@ -92,6 +87,7 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:g
       }
     ]
   }'
+
 {
   "candidates": [
     {
@@ -128,19 +124,16 @@ Handle edge cases such as:
 Repo not yet scanned
 No issues cached
 LLM errors
+
 Response example
 {
-
   "analysis": "<LLM-generated text here>"
-
 }
 
 No UI is needed; this is strictly a backend task.
 
 Use TypeScript, Squalight and Bun.
 use SQLite
-
-Copy page
 
 Bun natively implements a high-performance SQLite3 driver.
 
@@ -154,13 +147,22 @@ const query = db.query("select 'Hello world' as message;");
 query.get();
 { message: "Hello world" }
 ```
+
 ```text
 https://github.com/oven-sh/bun
 ```
+
 ```text
 change the name to scan instead of fetch endpoint
 ```
--> 3rd prompt chain
+
+</details>
+
+<details>
+<summary>3rd prompt chain</summary>
+
 ```text
 add Linting	ESLint + Prettier	
 ```
+
+</details>
