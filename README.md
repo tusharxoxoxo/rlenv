@@ -16,6 +16,9 @@ GEMINI_API_KEY=your_api_key_here
 <details>
 <summary>2nd prompt chain</summary>
 
+<details>
+<summary>Initial requirements</summary>
+
 ```text
 GitHub Issue Analyzer with Local Caching + LLM Processing
 Overview
@@ -148,13 +151,25 @@ query.get();
 { message: "Hello world" }
 ```
 
+</details>
+
+<details>
+<summary>Reference repo</summary>
+
 ```text
 https://github.com/oven-sh/bun
 ```
 
+</details>
+
+<details>
+<summary>Endpoint rename</summary>
+
 ```text
 change the name to scan instead of fetch endpoint
 ```
+
+</details>
 
 </details>
 
