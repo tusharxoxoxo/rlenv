@@ -2,14 +2,14 @@
 
 ## Prompts used
 -> 1st prompt chain
-```json
+```text
 create a new .evn example file and add .env to git ignore 
 
 GEMINI_API_KEY=your_api_key_here
 ```
 
 -> 2nd prompt chain
-```json
+```text
 GitHub Issue Analyzer with Local Caching + LLM Processing
 Overview
 Build a small service with two endpoints that can:
@@ -78,7 +78,7 @@ for gemini 2.5 flash, the usage limit in free tier is 5 request per minute
 
 example
 curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent" \
-  -H 'Content-Type: application/json' \
+  -H 'Content-Type: application/text' \
   -H 'X-goog-api-key: $GEMINI_API_KEY' \
   -X POST \
   -d '{
@@ -154,13 +154,13 @@ const query = db.query("select 'Hello world' as message;");
 query.get();
 { message: "Hello world" }
 ```
-```json
+```text
 https://github.com/oven-sh/bun
 ```
-```json
+```text
 change the name to scan instead of fetch endpoint
 ```
 -> 3rd prompt chain
-```json
+```text
 add Linting	ESLint + Prettier	
 ```
