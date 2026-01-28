@@ -6,6 +6,16 @@
 bun run dev
 ```
 
+-> example repo
+```bash 
+curl -s -X POST http://localhost:3000/scan -H "Content-Type: application/json" -d '{"repo": "sindresorhus/is"}'
+```
+
+-> example analyze
+```bash 
+curl -s -X POST http://localhost:3000/analyze -H "Content-Type: application/json" -d '{"repo": "sindresorhus/is", "prompt": "Find themes across recent issues and recommend what the maintainers should fix first"}'
+```
+
 ## Why you chose the specific local storage option
 
 I chose SQLite 
