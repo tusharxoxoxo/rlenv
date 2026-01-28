@@ -1,5 +1,18 @@
 # rlenv
 
+## How to run the server
+
+```bash
+bun run dev
+```
+
+## Why you chose the specific local storage option
+
+I chose SQLite 
+-> local storage lightweight file-based database easy to set up and use 
+-> fast and reliable
+-> can handle a large number of requests.
+
 ## Prompts used
 
 <details>
