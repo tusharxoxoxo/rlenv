@@ -25,6 +25,11 @@ export async function fetchAllOpenIssues(repo: string): Promise<GitHubIssue[]> {
             if (response.status === 403) {
                 throw new Error("GitHub API rate limit exceeded. Please try again later.");
             }
+            // GitHub returns 422 when pagination limit is exceeded (max ~1000 results)
+            if (response.status === 422) {
+                console.log(`Reached GitHub pagination limit at page ${page}, returning ${allIssues.length} issues`);
+                break;
+            }
             throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
         }
 
