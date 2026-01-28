@@ -78,7 +78,7 @@ async function handleAnalyze(req: Request): Promise<Response> {
             const count = getRepoIssueCount(body.repo);
             if (count === 0) {
                 return errorResponse(
-                    `Repository '${body.repo}' has not been scanned yet. Use POST /fetch first.`,
+                    `Repository '${body.repo}' has not been scanned yet. Use POST /scan first.`,
                     404
                 );
             }
@@ -116,14 +116,14 @@ const server = Bun.serve({
             return jsonResponse({
                 status: "ok",
                 endpoints: [
-                    "POST /fetch - Fetch and cache GitHub issues",
+                    "POST /scan - Fetch and cache GitHub issues",
                     "POST /analyze - Analyze cached issues with LLM"
                 ]
             });
         }
 
-        // POST /fetch
-        if (path === "/fetch" && method === "POST") {
+        // POST /scan
+        if (path === "/scan" && method === "POST") {
             return handleFetch(req);
         }
 
