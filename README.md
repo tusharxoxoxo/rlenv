@@ -16,6 +16,8 @@ GEMINI_API_KEY=your_api_key_here
 
 </details>
 
+</details>
+
 <details>
 <summary>2nd prompt chain</summary>
 
@@ -185,5 +187,7 @@ change the name to scan instead of fetch endpoint
 ```text
 add Linting	ESLint + Prettier	
 ```
+
+</details>
 
 </details>
